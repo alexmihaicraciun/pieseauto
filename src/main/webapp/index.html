@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/final-project.css">
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav id="navbar">
+        <div class="container">
+          <div class="nav-wrapper">
+            <form class="left">
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+            <a href="#" data-activates="mobile-collapse" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="products.html"><i class="material-icons left">shop</i>Products</a></li>
+              <li><a href="shopcart.html"><i class="material-icons left">shopping_cart</i>Shopping cart<span class="badge bullet-shoppingcart">1</span></a></li>
+              <li><a href="profile.html" class="dropdown-button" data-activates="userprofile-modal"><i class="material-icons left">perm_identity</i>Hi, Alex</a></li>
+              <ul class="dropdown-content" id="userprofile-modal">
+                <li><a href="">Profile</a></li>
+                <li><a href="">Settings</a></li>
+              </ul>
+            </ul>
+            <ul class="side-nav" id="mobile-collapse">
+              <li><a href="profile.html"><i class="material-icons left">perm_identity</i>View Profile</a></li>
+              <li><a href="shopcart.html"><i class="material-icons left">shopping_cart</i>Shopping Cart<span class="badge bullet-shoppingcart">1</span></a></li>
+              <li><a href="products.html"><i class="material-icons left">shop</i>Products</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div><!-- /. navbar-fixed -->
+    <div class="section" id="products-showcase">  
+      <div class="slider">
+        <ul class="slides" id="slides">
+          <li>
+            <div class="container">
+              <img src="images/sliderbg.jpg">
+              <div class="caption center-align">
+                <h4>CEA MAI VARIATA GAMA DE PRODUSE</h4>
+                <div class="slider-image i1"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="container">
+              <img src="images/sliderbg.jpg">
+              <div class="caption left-align">
+                <h5>POSIBILITATE DE RETUR IN 14 ZILE</h5>
+                <div class="slider-image i2"></div>
+              </div>
+              <div class="caption right-align">
+                <h6>LIVRARE PRIN CURIER RAPID ORIUNDE IN TARA</h6>
+                <div class="slider-image i3"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>  
+    </div><!-- /.products-showcase" -->
+    <div class="section" id="newest-products">
+      <div class="container">
+        <h2 class="newest-product-title">Newest Products</h2>
+        <div class="row" id="display-onsale">
+          
+        </div>
+      </div>
+    </div><!-- /.Newest Products-->
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l8 s12">
+            <h5 class="white-text">Ceva titlu</h5>
+            <p class="grey-text text-lighten-4">lorem dolores ipsum</p>
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Suport clienti</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Link 4</a></li>
+              <li><a class="grey-text text-lighten-3" href="#">Link 5</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer><!-- /. Footer -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function () {
+          $(".button-collapse").sideNav();
+          $('.slider').slider({full_width: false});
+          
+          
+          $.get("products/onsale", function(data){
+        	  for(var i = 0; i < data.length; i++) {
+        		  $("#display-onsale").append("<div class=\"col s12 m2 l2 newest-product np"+ i +"\">");
+        		  $(".np"+ i).append("<img src=\"images/products/1.jpg\" alt=\"\">")
+        		  					.append("<h5>"+data[i].product_name+"</h5>")
+        		  					.append("<p class=\"newest-product-price-label\">Pret : <span class=\""+ data[i].product_price +"\">12</span></p>");
+        	  }
+          });
+      });
+    </script>
+  </body>
+</html>
